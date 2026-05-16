@@ -1,0 +1,80 @@
+.employee-page {
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #f4f7fb;
+
+  padding: 20px;
+}
+
+.employee-card {
+  width: 100%;
+  max-width: 500px;
+
+  padding: 35px 30px;
+
+  border-radius: 18px !important;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* TOP SECTION */
+.top-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.top-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #111827;
+
+  margin-bottom: 6px;
+}
+
+.top-section p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* FORM FIELD */
+.full-width {
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+/* INPUT STYLE */
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 12px !important;
+  background: white;
+}
+
+/* INPUT HEIGHT */
+::ng-deep .mat-mdc-form-field-infix {
+  min-height: 56px !important;
+
+  display: flex;
+  align-items: center;
+}
+
+/* BUTTON */
+.submit-btn {
+  width: 100%;
+  height: 52px;
+
+  margin-top: 10px;
+
+  border-radius: 12px !important;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.full-width textarea {
+  resize: none;
+}

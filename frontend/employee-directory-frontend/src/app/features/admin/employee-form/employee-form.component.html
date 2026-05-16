@@ -1,0 +1,128 @@
+<div class="employee-page">
+
+  <mat-card class="employee-card">
+
+    <div class="top-section">
+
+      <h2>
+        {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+      </h2>
+
+      <p>
+        Manage employee details
+      </p>
+
+    </div>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+      <!-- First Name -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          First Name
+        </mat-label>
+
+        <input matInput formControlName="firstName" placeholder="Enter first name">
+
+      </mat-form-field>
+
+      <!-- Last Name -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Last Name
+        </mat-label>
+
+        <input matInput formControlName="lastName" placeholder="Enter last name">
+
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Email Address
+        </mat-label>
+
+        <input matInput type="email" formControlName="email" placeholder="Enter email address">
+
+      </mat-form-field>
+
+      <!-- Department -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Department
+        </mat-label>
+
+        <input matInput formControlName="department" placeholder="Enter department">
+
+      </mat-form-field>
+
+      <!-- Designation -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Designation
+        </mat-label>
+
+        <input matInput formControlName="designation" placeholder="Enter designation">
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Mobile Number</mat-label>
+
+        <input matInput formControlName="mobileNo" placeholder="Enter mobile number" maxlength="10">
+
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>Joined On</mat-label>
+
+        <input matInput type="date" formControlName="joinedOn">
+
+      </mat-form-field>
+
+
+      <!-- Status -->
+      <mat-form-field appearance="outline" class="full-width">
+
+        <mat-label>
+          Status
+        </mat-label>
+
+        <mat-select formControlName="status">
+
+          <mat-option value="ACTIVE">
+            ACTIVE
+          </mat-option>
+
+          <mat-option value="INACTIVE">
+            INACTIVE
+          </mat-option>
+
+        </mat-select>
+
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+
+
+        <mat-label>Address</mat-label>
+
+        <textarea matInput formControlName="address" placeholder="Enter full address" rows="3"></textarea>
+
+      </mat-form-field>
+
+      <!-- Button -->
+      <button mat-raised-button color="primary" class="submit-btn" type="submit">
+        {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+      </button>
+
+    </form>
+
+  </mat-card>
+
+</div>

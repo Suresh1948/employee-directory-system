@@ -1,0 +1,41 @@
+<div class="login-wrapper">
+
+  <mat-card class="login-card">
+
+    <h2 class="title">Employee Directory</h2>
+
+    <form>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="email" name="email">
+      </mat-form-field>
+
+      <!-- Password -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="password" name="password">
+      </mat-form-field>
+
+      <!-- Login Button -->
+      <button mat-raised-button color="primary" class="full-width" (click)="login()">
+        Login
+      </button>
+
+      <!-- Divider -->
+      <div class="divider">OR</div>
+
+      <!-- Google Sign-in -->
+      <div id="googleBtn" class="google-btn"></div>
+
+      <!-- Register Button -->
+      <button mat-stroked-button color="accent" class="full-width" (click)="goToRegister()">
+        Create Account (Register)
+      </button>
+
+    </form>
+
+  </mat-card>
+
+</div>
