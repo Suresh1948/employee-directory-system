@@ -1,105 +1,103 @@
-<div class="page-wrapper">
+<!-- LOGOUT -->
+<div class="d-flex justify-content-between align-items-center p-2 shadow-sm mb-2 bg-primary text-white">
+  <!-- TITLE -->
+  <h1 class="m-0">
+    Employee Directory
+  </h1>
+  <!-- LOGOUT BUTTON -->
+  <button mat-icon-button color="text-white" (click)="logout()" matTooltip="Logout">
+    <mat-icon>logout</mat-icon>
+  </button>
+</div>
 
-  <!-- TOP BAR -->
-  <div class="table-header">
+<!-- CREATE -->
+<div class="d-flex justify-content-between m-2">
+  <mat-form-field appearance="outline" class="search-box">
+    <mat-label>Search Employee</mat-label>
 
-    <mat-form-field appearance="outline" class="search-box">
-      <mat-label>Search Employee</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search name/email">
 
-      <input matInput (keyup)="applyFilter($event)" placeholder="Search name/email">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
+  <button mat-raised-button color="accent" *ngIf="isAdmin" (click)="createEmployee()">
+    + Create Employee
+  </button>
+</div>
 
-    <div class="right-actions">
+<h2 class="m-2">Employee Details</h2>
 
-      <!-- LOGOUT (TOP) -->
-      <button mat-icon-button color="primary" (click)="logout()" matTooltip="Logout">
-        <mat-icon>logout</mat-icon>
-      </button>
-      <!-- CREATE (BELOW LOGOUT) -->
-      <button mat-raised-button color="primary" *ngIf="isAdmin" (click)="createEmployee()">
-        + Create Employee
-      </button>
+<div class="table-CONTAINER">
+  <!-- TABLE -->
 
-    </div>
+  <table mat-table [dataSource]="dataSource" class="full-width-table">
 
-  </div>
-  <div class="table-CONTAINER">
-    <!-- TABLE -->
-    <div class="table-wrapper">
+    <ng-container matColumnDef="sno">
+      <th mat-header-cell *matHeaderCellDef> S.No </th>
+      <td mat-cell *matCellDef="let emp; let i = index">
+        {{ (paginator.pageIndex * paginator.pageSize) + i + 1 }}
+      </td>
+    </ng-container>
 
-      <table mat-table [dataSource]="dataSource" class="full-width-table">
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef>First Name</th>
+      <td mat-cell *matCellDef="let emp">{{ emp.firstName }}</td>
+    </ng-container>
 
-        <ng-container matColumnDef="sno">
-          <th mat-header-cell *matHeaderCellDef> S.No </th>
-          <td mat-cell *matCellDef="let emp; let i = index">
-            {{ i + 1 }}
-          </td>
-        </ng-container>
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+      <td mat-cell *matCellDef="let emp">{{ emp.lastName }}</td>
+    </ng-container>
 
-        <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef>First Name</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.firstName }}</td>
-        </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>Email</th>
+      <td mat-cell *matCellDef="let emp">{{ emp.email }}</td>
+    </ng-container>
 
-        <ng-container matColumnDef="lastName">
-          <th mat-header-cell *matHeaderCellDef>Last Name</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.lastName }}</td>
-        </ng-container>
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef>Department</th>
+      <td mat-cell *matCellDef="let emp">{{ emp.department }}</td>
+    </ng-container>
 
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.email }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="department">
-          <th mat-header-cell *matHeaderCellDef>Department</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.department }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="joinedOn">
-          <th mat-header-cell *matHeaderCellDef>JoinedOn</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.joinedOn | date:'dd-MM-yyyy' }}</td>
-        </ng-container>
-
-
-        <ng-container matColumnDef="mobileNo">
-          <th mat-header-cell *matHeaderCellDef>MobileNo</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.mobileNo }}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>Status</th>
-          <td mat-cell *matCellDef="let emp">{{ emp.status }}</td>
-        </ng-container>
+    <ng-container matColumnDef="joinedOn">
+      <th mat-header-cell *matHeaderCellDef>JoinedOn</th>
+      <td mat-cell *matCellDef="let emp">{{ emp.joinedOn | date:'dd-MM-yyyy' }}</td>
+    </ng-container>
 
 
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>Actions</th>
-          <td mat-cell *matCellDef="let emp">
-            <button *ngIf="isAdmin" mat-icon-button color="primary" (click)="editEmployee(emp)">
-              <mat-icon>edit</mat-icon>
-            </button>
+    <ng-container matColumnDef="mobileNo">
+      <th mat-header-cell *matHeaderCellDef>MobileNo</th>
+      <td mat-cell *matCellDef="let emp">{{ emp.mobileNo }}</td>
+    </ng-container>
 
-            <button *ngIf="isAdmin" mat-icon-button color="warn" (click)="deleteEmployee(emp.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
-      </table>
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let emp">{{ emp.status }}</td>
+    </ng-container>
 
 
-    </div>
-    <!-- PAGINATOR -->
-    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
-    </mat-paginator>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let emp">
+        <button *ngIf="isAdmin" mat-icon-button color="primary" (click)="editEmployee(emp)">
+          <mat-icon>edit</mat-icon>
+        </button>
 
-  </div>
+        <button *ngIf="isAdmin" mat-icon-button color="warn" (click)="deleteEmployee(emp.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+
+
+  <!-- PAGINATOR -->
+  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5,10,20]" showFirstLastButtons>
+  </mat-paginator>
 
 </div>

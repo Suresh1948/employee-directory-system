@@ -1,23 +1,18 @@
-<div class="employee-page">
+<div class="d-flex justify-content-start align-items-center bg-primary text-white p-2 mb-2">
+  <h1 class="m-0">Employee Directory</h1>
+</div>
+<h2 class="px-2">
+  {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+</h2>
 
-  <mat-card class="employee-card">
 
-    <div class="top-section">
 
-      <h2>
-        {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
-      </h2>
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class=" d-flex justify-content-center gap-2">
 
-      <p>
-        Manage employee details
-      </p>
-
-    </div>
-
-    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-
-      <!-- First Name -->
-      <mat-form-field appearance="outline" class="full-width">
+  <div class="row g-2 mx-2">
+    <!-- First Name -->
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
         <mat-label>
           First Name
@@ -26,9 +21,12 @@
         <input matInput formControlName="firstName" placeholder="Enter first name">
 
       </mat-form-field>
+    </div>
 
-      <!-- Last Name -->
-      <mat-form-field appearance="outline" class="full-width">
+
+    <!-- Last Name -->
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100 ">
 
         <mat-label>
           Last Name
@@ -37,9 +35,11 @@
         <input matInput formControlName="lastName" placeholder="Enter last name">
 
       </mat-form-field>
+    </div>
 
-      <!-- Email -->
-      <mat-form-field appearance="outline" class="full-width">
+    <!-- Email -->
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
         <mat-label>
           Email Address
@@ -48,9 +48,10 @@
         <input matInput type="email" formControlName="email" placeholder="Enter email address">
 
       </mat-form-field>
-
-      <!-- Department -->
-      <mat-form-field appearance="outline" class="full-width">
+    </div>
+    <!-- Department -->
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
         <mat-label>
           Department
@@ -59,9 +60,11 @@
         <input matInput formControlName="department" placeholder="Enter department">
 
       </mat-form-field>
+    </div>
 
-      <!-- Designation -->
-      <mat-form-field appearance="outline" class="full-width">
+    <!-- Designation -->
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
         <mat-label>
           Designation
@@ -70,25 +73,31 @@
         <input matInput formControlName="designation" placeholder="Enter designation">
 
       </mat-form-field>
+    </div>
 
-      <mat-form-field appearance="outline" class="full-width">
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
         <mat-label>Mobile Number</mat-label>
 
         <input matInput formControlName="mobileNo" placeholder="Enter mobile number" maxlength="10">
 
       </mat-form-field>
-      <mat-form-field appearance="outline" class="full-width">
+    </div>
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
         <mat-label>Joined On</mat-label>
 
         <input matInput type="date" formControlName="joinedOn">
 
       </mat-form-field>
+    </div>
 
 
-      <!-- Status -->
-      <mat-form-field appearance="outline" class="full-width">
+    <!-- Status -->
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
         <mat-label>
           Status
@@ -107,7 +116,9 @@
         </mat-select>
 
       </mat-form-field>
-      <mat-form-field appearance="outline" class="full-width">
+    </div>
+    <div class="col-md-3">
+      <mat-form-field appearance="outline" class="w-100">
 
 
         <mat-label>Address</mat-label>
@@ -115,14 +126,14 @@
         <textarea matInput formControlName="address" placeholder="Enter full address" rows="3"></textarea>
 
       </mat-form-field>
+    </div>
 
-      <!-- Button -->
+    <!-- Button -->
+    <div class="d-flex justify-content-end">
       <button mat-raised-button color="primary" class="submit-btn" type="submit">
-        {{ isEditMode ? 'Update Employee' : 'Create Employee' }}
+        {{ isEditMode ? 'Update Employee' : 'Save Employee' }}
       </button>
+    </div>
 
-    </form>
-
-  </mat-card>
-
-</div>
+  </div>
+</form>

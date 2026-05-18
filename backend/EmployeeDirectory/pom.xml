@@ -66,6 +66,11 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-api</artifactId>
 			<version>0.11.5</version>
@@ -96,6 +101,7 @@
 			<artifactId>google-auth-library-oauth2-http</artifactId>
 			<version>1.23.0</version>
 		</dependency>
+
 
 	</dependencies>
 	<build>

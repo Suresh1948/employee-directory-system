@@ -72,34 +72,44 @@ export class EmployeeListComponent
 
   ngAfterViewInit(): void {
 
-    this.dataSource.paginator = this.paginator;
+  this.paginator.pageSize = 5;
+
+  this.loadEmployees();
+
+  this.paginator.page.subscribe(() => {
+
     this.loadEmployees();
 
+  });
 
-  }
+}
 
-  loadEmployees(): void {
+loadEmployees(): void {
 
-    this.employeeService.getEmployees(this.paginator.pageIndex, this.paginator.pageSize)
-      .subscribe({
-        next: (data: any) => {
+  this.employeeService
+    .getEmployees(
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    )
+    .subscribe({
 
-          console.log("API RESPONSE:", data);
+      next: (data: any) => {
 
-          this.dataSource.data = data?.content || data || [];
+        this.dataSource.data = data.content;
 
-        },
-        error: (err) => {
+        this.paginator.length = data.totalElements;
 
-          console.error(err);
+      },
 
-        }
+      error: (err) => {
 
-      });
+        console.error(err);
 
-  }
+      }
 
-  get isAdmin(): boolean {
+    });
+
+}  get isAdmin(): boolean {
 
     return localStorage.getItem('role') === 'ADMIN';
 
