@@ -49,7 +49,10 @@ jobs:
           mkdir -p ~/.kube
           echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
 
+      - name: Check files
+        run: ls -R    
+
       - name: Deploy to Kubernetes
         run: |
-          kubectl apply -f employee-directory-system/k8s/deployment.yml
-          kubectl apply -f employee-directory-system/k8s/service.yml  
+          kubectl apply -f k8s/deployment.yml
+          kubectl apply -f k8s/service.yml  
