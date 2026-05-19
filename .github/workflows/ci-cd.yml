@@ -50,7 +50,10 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
 
       - name: Check files
-        run: ls -R    
+        run: ls -R
+
+      - name: Debug k8s folder
+        run: ls -R k8s
 
       - name: Deploy to Kubernetes
         run: |
