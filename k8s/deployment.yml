@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: employee-directory-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: employee-directory
+
+  template:
+    metadata:
+      labels:
+        app: employee-directory
+
+    spec:
+      containers:
+        - name: employee-directory-container
+          image: sureshdbemba966/employee-directory
+
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: DB_USERNAME
+              value: root
+
+            - name: DB_PASSWORD
+              value: root
+
+            - name: GOOGLE_CLIENT_ID
+              value: "905237510600-5sc43n0mp8okmdn4hv9oi6bmhj8kv8cs.apps.googleusercontent.com"
