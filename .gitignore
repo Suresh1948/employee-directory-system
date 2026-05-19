@@ -1,11 +1,15 @@
-# IDE / Eclipse files
-backend/.metadata/
-backend/.classpath
-backend/.project
-backend/.settings/
+# Eclipse / IDE
+**/.metadata/
+**/.classpath
+**/.project
+**/.settings/
+
+# Build folders
+**/bin/
+**/target/
 
 # Logs
 *.log
 
-# Node modules (if frontend has Angular)
+# Node modules
 frontend/node_modules/
