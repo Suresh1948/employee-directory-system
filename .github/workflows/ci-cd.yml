@@ -51,18 +51,18 @@ jobs:
       - name: Push Frontend Docker Image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/employee-frontend    
 
-      - name: Setup kubeconfig
-        run: |
-          mkdir -p ~/.kube
-          echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+      # - name: Setup kubeconfig
+      #   run: |
+      #     mkdir -p ~/.kube
+      #     echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
 
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl apply -f k8s/mysql-deployment.yml
-          kubectl apply -f k8s/mysql-service.yml
+      # - name: Deploy to Kubernetes
+      #   run: |
+      #     kubectl apply -f k8s/mysql-deployment.yml
+      #     kubectl apply -f k8s/mysql-service.yml
 
-          kubectl apply -f k8s/backend-deployment.yml
-          kubectl apply -f k8s/backend-service.yml
+      #     kubectl apply -f k8s/backend-deployment.yml
+      #     kubectl apply -f k8s/backend-service.yml
 
-          kubectl apply -f k8s/frontend-deployment.yml
-          kubectl apply -f k8s/frontend-service.yml
+      #     kubectl apply -f k8s/frontend-deployment.yml
+      #     kubectl apply -f k8s/frontend-service.yml
