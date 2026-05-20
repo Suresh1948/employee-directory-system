@@ -5,6 +5,8 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
   build:
 
@@ -36,7 +38,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }} 
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Backend Docker Image
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/employee-directory .
@@ -49,8 +51,9 @@ jobs:
         run: docker build -t ${{ secrets.DOCKER_USERNAME }}/employee-frontend .
 
       - name: Push Frontend Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/employee-frontend    
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/employee-frontend
 
+      # Kubernetes deployment (disabled for local cluster)
       # - name: Setup kubeconfig
       #   run: |
       #     mkdir -p ~/.kube
