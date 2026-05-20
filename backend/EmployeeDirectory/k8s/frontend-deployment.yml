@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: frontend-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: frontend
+
+  template:
+    metadata:
+      labels:
+        app: frontend
+
+    spec:
+      containers:
+        - name: frontend
+          image: sureshdbemba966/employee-frontend
+
+          ports:
+            - containerPort: 80
+
+          env:
+            - name: GOOGLE_CLIENT_ID
+              value: "905237510600-5sc43n0mp8okmdn4hv9oi6bmhj8kv8cs.apps.googleusercontent.com"

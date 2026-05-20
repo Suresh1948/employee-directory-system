@@ -1,7 +1,20 @@
 services:
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-container
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: employee_db
+
+    ports:
+      - "3307:3306"
+
   backend:
     build: .
     image: employee-directory-img
+    container_name: backend-container
 
     ports:
       - "8080:8080"
@@ -10,3 +23,17 @@ services:
       DB_USERNAME: root
       DB_PASSWORD: root
       GOOGLE_CLIENT_ID: 905237510600-5sc43n0mp8okmdn4hv9oi6bmhj8kv8cs.apps.googleusercontent.com
+
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ../../frontend/employee-directory-frontend
+    image: employee-frontend
+    container_name: frontend-container
+
+    ports:
+      - "4200:80"
+
+    depends_on:
+      - backend
